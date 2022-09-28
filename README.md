@@ -51,7 +51,7 @@
 </details>
 
 <details>
-  <summary>3) Высоковольтный водонепроницаемый цифровой сервопривод для управления сливным клапаном</summary>
+  <summary>3) Водонепроницаемый сервопривод для управления сливным клапаном</summary>
 
 Сервопривод для управления сливным клапаном брал [здесь](https://www.ozon.ru/product/1-sht-vysokovoltnyy-vodonepronitsaemyy-tsifrovoy-servoprivod-dlya-1-5-rc-car-270-servo-472364958/?sh=LmakeEw5CQ)
   
