@@ -90,8 +90,29 @@
 
 </details>
 
+<details>
+  <summary>8) Фильтр грубой очистки воды</summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/192660219-284d3fc0-cb62-4c2f-b3c6-9856c4ec553d.png)
 
-[брал здесь]()
+</details>
+
+<details>
+  <summary>9) Обратный клапан воды</summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/192660369-6822061b-97f1-402a-ac70-8df9bbcf4021.png)
+
+</details>
+
+<details>
+  <summary>10) Сифон для ванны AlcaPlast click/clack с плоским переливом</summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/192660484-38635c69-d8d7-4c42-8599-c589df34f7c1.png)
+
+</details>
+
+
+
 
 
 
