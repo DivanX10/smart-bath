@@ -35,6 +35,7 @@
 
 * Подробная статья о [Zigbee реле на 8 каналов](https://modkam.ru/2020/06/24/zigbee-rele-na-8-kanalov/)    
 * 8 канальное реле zigbee можете заказать у Григория https://t.me/avenit
+* [Видео обзор](https://youtu.be/ytuvblyAoo0) Modkam - 8х канальное Zigbee реле с сухими контактами, подключение внешних датчиков на канале [Alex Kvazis - технологии умного дома](https://www.youtube.com/c/AlexKvazis/videos)
 
 
 ![image](https://user-images.githubusercontent.com/64090632/192657403-07199f10-7540-4328-8489-d425c8b7775a.png)
@@ -82,7 +83,8 @@
 <details>
   <summary>7) Электрический моторизованный шаровой кран для регулировки напора воды, а также открыть и закрыть воду</summary>
 
-Электрический моторизованный шаровой кран [брал здесь](https://aliexpress.ru/item/1005003224042573.html)
+* Электрический моторизованный шаровой кран [брал здесь](https://aliexpress.ru/item/1005003224042573.html)
+* Обзор [FrankEver FK_V02 - Zigbee кран с регулировкой открытия](https://youtu.be/lpL6xAYuBHk) можете посмотреть на канале [Alex Kvazis - технологии умного дома](https://www.youtube.com/c/AlexKvazis/videos) 
   
 ![image](https://user-images.githubusercontent.com/64090632/192659320-4b3b5dd5-483d-4699-8dbc-d6b365cdba43.png)
 
