@@ -113,16 +113,20 @@
 </details>
 
 <details>
-  <summary>11) Датчик температуры воды погружной</summary>
-  
-![image](https://user-images.githubusercontent.com/64090632/192899596-05133a03-178f-46fb-ac82-2b5c0bc3d51e.png)
+  <summary>11) Датчик температуры воды DS18B20 и адаптер питания</summary>
+
+Датчик температуры воды DS18B20 и адаптер брал [здесь](https://aliexpress.ru/item/32467815969.html)
+ 
+![image](https://user-images.githubusercontent.com/64090632/193369539-cd92100a-f390-4632-967a-61bbaf779100.png)
+
 </details>
 
 <details>
-  <summary>12) Тройник для погружного датчика температуры</summary>
+  <summary>12) Тройник для погружного датчика температуры (пока данные не точные, нахожусь в поиске нужного тройника, так как нужна соответсвующая гильза под датчик температуры)</summary>
   
 ![image](https://user-images.githubusercontent.com/64090632/192899430-7c4f0223-c60c-4653-bc85-b4f552903dae.png)
 ![image](https://user-images.githubusercontent.com/64090632/192899665-20e77103-5a72-4606-a790-ac743d3eb972.png)
+![image](https://user-images.githubusercontent.com/64090632/193369663-0e8652f9-5cf1-46cf-9986-a2a77591b54c.png)
 </details>
 
 
