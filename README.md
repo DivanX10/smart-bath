@@ -106,10 +106,9 @@
 </details>
 
 <details>
-  <summary>10) Сифон для ванны AlcaPlast click/clack с плоским переливом</summary>
+  <summary>10) Сифон для ванны AlcaPlast click/clack с плоским переливом. Сифон со встроенным фитингом, что позволяет подключить шланг с водой и наполнять ванну водой</summary>
   
-![image](https://user-images.githubusercontent.com/64090632/192660484-38635c69-d8d7-4c42-8599-c589df34f7c1.png)
-
+![image](https://user-images.githubusercontent.com/64090632/193369955-59d2433c-1ce4-4595-8ef1-300d29481631.png)
 </details>
 
 <details>
