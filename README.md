@@ -44,7 +44,7 @@
 </details>
 
 <details>
-  <summary>2) Электропривод поворотный TIM M030101DAB для трехходового клапана для смешивания горячей и холодной воды (в налиичии)</summary>
+  <summary>2) Электропривод поворотный TIM M030101DAB для трехходового клапана для смешивания горячей и холодной воды (в наличии)</summary>
 
 Электропривод поворотный TIM M030101DAB брал [здесь](https://www.ozon.ru/product/servoprivod-dlya-krana-raspredelitelnogo-230v-dlina-provoda-1-5m-tim-485927636/?sh=LmakeLtZzw)
   
