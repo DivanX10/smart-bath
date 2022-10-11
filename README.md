@@ -44,7 +44,7 @@
 </details>
 
 <details>
-  <summary>2) Электропривод поворотный TIM M030101DAB для трехходового клапана для смешивания горячей и холодной воды (в наличии)</summary>
+  <summary>2) Электропривод поворотный TIM M030101DAB для трехходового клапана для смешивания горячей и холодной воды</summary>
 
 Электропривод поворотный TIM M030101DAB брал [здесь](https://www.ozon.ru/product/servoprivod-dlya-krana-raspredelitelnogo-230v-dlina-provoda-1-5m-tim-485927636/?sh=LmakeLtZzw)
   
@@ -52,7 +52,7 @@
 </details>
 
 <details>
-  <summary>3) Водонепроницаемый сервопривод для управления сливным клапаном (в пути)</summary>
+  <summary>3) Водонепроницаемый сервопривод для управления сливным клапаном</summary>
 
 Сервопривод для управления сливным клапаном брал [здесь](https://www.ozon.ru/product/1-sht-vysokovoltnyy-vodonepronitsaemyy-tsifrovoy-servoprivod-dlya-1-5-rc-car-270-servo-472364958/?sh=LmakeEw5CQ)
   
@@ -60,14 +60,14 @@
 </details>
 
 <details>
-  <summary>4) Датчик допплера MH-ET LIVE HB100 X для обнаружения человека когда ложимся в ванну (в пути)</summary>
+  <summary>4) Датчик допплера MH-ET LIVE HB100 X для обнаружения человека когда ложимся в ванну</summary>
 
 Датчик допплера MH-ET LIVE HB100 X брал [здесь](https://aliexpress.ru/item/4000322455586.html?sku_id=10000001320564017)  
 ![image](https://user-images.githubusercontent.com/64090632/192656809-0863d89c-ee09-4609-ba43-86564644a7c5.png) 
 </details>
 
 <details>
-  <summary>5) Бесконтактный датчик воды XKC-Y25-V для определения уровня воды (в пути)</summary>
+  <summary>5) Бесконтактный датчик воды XKC-Y25-V для определения уровня воды</summary>
 
 Бесконтактный датчик воды XKC-Y25-V брал [здесь](https://aliexpress.ru/item/1005004165856762.html)
   
@@ -75,7 +75,7 @@
 </details>
 
 <details>
-  <summary>6) Водосчетчик с герконом (не с НАМУР) для учета наполняемой воды с точностью 1 импульс - 1 литр (не заказывал)</summary>
+  <summary>6) Водосчетчик с герконом (не с НАМУР) для учета наполняемой воды с точностью 1 импульс - 1 литр</summary>
 
 [ВСГД-15-03 (110ММ) СЧЕТЧИК ГОРЯЧЕЙ ВОДЫ С ИМП. ВЫХОДОМ](https://www.teplovodomer.ru/catalog/schetchiki-vody/kvartirnye-schetchiki-vody/dn-15/vsgd-15-03-110mm-schetchik-goryachey-vody-s-imp-vykhodom/)
   
@@ -83,7 +83,7 @@
 </details>
 
 <details>
-  <summary>7) Электрический моторизованный шаровой кран для регулировки напора воды, а также открыть и закрыть воду (в пути)</summary>
+  <summary>7) Электрический моторизованный шаровой кран для регулировки напора воды, а также открыть и закрыть воду</summary>
 
 * Электрический моторизованный шаровой кран [брал здесь](https://aliexpress.ru/item/1005003224042573.html)
 * Обзор [FrankEver FK_V02 - Zigbee кран с регулировкой открытия](https://youtu.be/lpL6xAYuBHk) можете посмотреть на канале [Alex Kvazis - технологии умного дома](https://www.youtube.com/c/AlexKvazis/videos) 
@@ -93,14 +93,14 @@
 </details>
 
 <details>
-  <summary>8) Фильтр грубой очистки воды (не заказывал)</summary>
+  <summary>8) Фильтр грубой очистки воды</summary>
   
 ![image](https://user-images.githubusercontent.com/64090632/192660219-284d3fc0-cb62-4c2f-b3c6-9856c4ec553d.png)
 
 </details>
 
 <details>
-  <summary>9) Обратный клапан воды (не заказывал)</summary>
+  <summary>9) Обратный клапан воды</summary>
   
 ![image](https://user-images.githubusercontent.com/64090632/192660369-6822061b-97f1-402a-ac70-8df9bbcf4021.png)
 
@@ -115,7 +115,7 @@
 </details>
 
 <details>
-  <summary>11) Датчик температуры воды DS18B20 и адаптер питания (в пути)</summary>
+  <summary>11) Датчик температуры воды DS18B20 и адаптер питания</summary>
 
 Датчик температуры воды DS18B20 и адаптер брал [здесь](https://aliexpress.ru/item/32467815969.html)
  
