@@ -54,7 +54,7 @@
 <details>
   <summary>3) Cервопривод MG945 для управления сливным клапаном</summary>
 
-Сервопривод MG945 для управления сливным клапаномc мощностью 12 кг брал [здесь]([https://www.ozon.ru/product/1-sht-vysokovoltnyy-vodonepronitsaemyy-tsifrovoy-servoprivod-dlya-1-5-rc-car-270-servo-472364958/?sh=LmakeEw5CQ](https://www.ozon.ru/product/716305913/?sh=LmakeJH9iQ&utm_campaign=productpage_link&utm_medium=share_button&utm_source=smm))
+Сервопривод MG945 для управления сливным клапаномc мощностью 12 кг брал [здесь](https://www.ozon.ru/product/716305913/?sh=LmakeJH9iQ&utm_campaign=productpage_link&utm_medium=share_button&utm_source=smm)
   
 ![image](https://user-images.githubusercontent.com/64090632/196492259-8ebf9d65-8b5d-4a3e-9800-b8ff98b79a33.png)
 </details>
