@@ -144,7 +144,56 @@
 !![image](https://user-images.githubusercontent.com/64090632/203877689-87e4bb94-de79-4d88-9a56-d1e7825062f0.png)
 </details>
 
-## Стоимость комплектующих. Указаны цены, которые я потратил на комплектующие в сентябре 2022 года
+<details>
+  <summary>15) Умный автоматический выключатель Wi-Fi (Black with metering и Номинальная сила тока 10A)</summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/203878317-1fdb70c9-fe10-445e-80d4-3c7b9df02adc.png)
+![image](https://user-images.githubusercontent.com/64090632/203878353-7c6a4a11-de47-4112-bb7f-5ac052164d0b.png)
+</details>
+
+<details>
+  <summary>16) Корпус пластиковый ЩУРн-П 1/8 IP66 PC LIGHT IE </summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/203879020-69830bfe-a10a-4863-ae44-48cd6c047678.png)
+![image](https://user-images.githubusercontent.com/64090632/203878353-7c6a4a11-de47-4112-bb7f-5ac052164d0b.png)
+</details>
+
+<details>
+  <summary>17) Счетчик горячей воды Ителма WFW23.D080.1L с импульсным выходом НАМУР (L 80 мм, Ду 15 мм, вес импульса 1 л)</summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/203879120-a62e9da2-572c-48c4-a6b1-beebca45a368.png)
+</details>
+
+<details>
+  <summary>18) Шина нулевая в корпусе (2х7) EKF PROxima </summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/203879179-6362642a-89cd-4826-a88e-2325660330a5.png)
+![image](https://user-images.githubusercontent.com/64090632/203878353-7c6a4a11-de47-4112-bb7f-5ac052164d0b.png)
+</details>
+
+<details>
+  <summary>19) Автоматический выключатель 1P 10А (C) 4,5kA ВА 47-63, EKF PROxima </summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/203879262-502dbb28-1d8f-4bc0-8a40-a2403bbc5d7c.png)
+![image](https://user-images.githubusercontent.com/64090632/203878353-7c6a4a11-de47-4112-bb7f-5ac052164d0b.png)
+</details>
+
+<details>
+  <summary>20) Устройство защитного отключения УЗО ВД-100 2P 16А- 10мА (электромеханическое) EKF PROxima</summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/203879310-1fe71995-e9cb-4ae5-87eb-97ca8c785ec7.png)
+![image](https://user-images.githubusercontent.com/64090632/203878353-7c6a4a11-de47-4112-bb7f-5ac052164d0b.png)
+</details>
+
+<details>
+  <summary>21) Источник питания Mean Well MDR-40-5 </summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/203879355-1879a6cd-47f0-451e-8874-6689c67a4795.png)
+![image](https://user-images.githubusercontent.com/64090632/203878353-7c6a4a11-de47-4112-bb7f-5ac052164d0b.png)
+</details>
+
+
+## Стоимость комплектующих. Указаны цены, которые я потратил на комплектующие в сентябре- декабре 2022 года
 1) 8 канальное реле zigbee 1шт. - 3900 руб.
 2) Программатор для реле SmartRF04EB 1шт. - 990 руб.
 3) Электропривод поворотный TIM M030101DAB для трехходового клапана 1шт. - 2 420 руб.
@@ -160,3 +209,10 @@
 13) Модуль ESP8266-12F NodeMcu WeMos D1 mini 1шт. - 499 руб.
 14) Водонепроницаемые RGB светодиодные светильники - 3704,59 руб. Ссылка на [товар](https://aliexpress.ru/item/32230854483.html)
 15) Дозатор для жидкого мыла для создание пены - 308,30 руб. Ссылка на [товар](https://aliexpress.ru/item/1005004515025463.html)
+16) Умный автоматический выключатель Wi-Fi (Black with metering и Номинальная сила тока 10A) - 1 124,18 руб. Ссылка на [товар](https://aliexpress.ru/item/1005004323726897.html)
+17) Корпус пластиковый ЩУРн-П 1/8 IP66 PC LIGHT IEK - 1579 руб.
+18) Счетчик горячей воды Ителма WFW23.D080.1L с импульсным выходом НАМУР (L 80 мм, Ду 15 мм, вес импульса 1 л) - 2038 руб.
+19) Шина нулевая в корпусе (2х7) EKF PROxima - 405 руб.
+20) Автоматический выключатель 1P 10А (C) 4,5kA ВА 47-63, EKF PROxima - 186 руб.
+21) Устройство защитного отключения УЗО ВД-100 2P 16А- 10мА (электромеханическое) EKF PROxima - 1585 руб.
+22) Источник питания Mean Well MDR-40-5 - 1615 руб. Ссылка на [товар](http://www.mean-well.ru/store/MDR-40-5/)
