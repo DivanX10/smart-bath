@@ -192,6 +192,13 @@
 ![image](https://user-images.githubusercontent.com/64090632/203878353-7c6a4a11-de47-4112-bb7f-5ac052164d0b.png)
 </details>
 
+<details>
+  <summary>21) Zigbee RGB контроллер Gledopto GL-C-007-2ID для управление подводными светодиодами </summary>
+  
+![image](https://user-images.githubusercontent.com/64090632/210140992-d51d825f-06ad-4ec4-aecf-3093721a6403.png)
+</details>
+
+
 
 ## Стоимость комплектующих. Указаны цены, которые я потратил на комплектующие в сентябре- декабре 2022 года
 1) 8 канальное реле zigbee 1шт. - 3900 руб.
