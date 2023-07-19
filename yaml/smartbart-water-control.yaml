@@ -1,0 +1,569 @@
+substitutions:
+  board_name: Smartbart Water Control
+  node_name: smartbart-water-control
+
+esphome:
+  name: ${node_name}
+  comment: ESP32 Smartbart Water Control
+#Восстанавливаем текущую позицию сервопривода
+  on_boot:
+    priority: -100
+    then:
+       - sensor.template.publish:
+           id: idServoSensor
+           state: !lambda "return id(idSavedPosition);"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+#Учетные данные Wi-Fi для подключения платы к домашней сети
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: on
+
+#Если не будет связи с WiFi, то поднимется точка доступа
+  ap:
+    ssid: ESP Smartbart Water Control
+    password: !secret ap_esp_password
+
+#Компонент captive portal в ESPHome является резервным механизмом на случай сбоя подключения к настроенному Wi-Fi.
+captive_portal:
+
+#Веб сервер
+web_server:
+  port: 80
+
+#Журналирование
+logger:
+  level: ERROR #DEBUG
+
+#Enable OTA
+ota:
+  password: "esphome"
+
+#Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_key
+  services:
+   - service: control_servo
+     variables:
+       level: float
+     then:
+       - servo.write:
+           id: idServoControlValve
+           level: !lambda 'return level / 100.0;'
+       - sensor.template.publish:
+           id: idServoSensor
+           state: !lambda 'return (float)level;'
+
+#####################################################################################
+############################## Платформа вывода #####################################
+output:
+#Сервопривод DS51150-12V для 3-х ходового термоклапана
+  - platform: ledc
+    id: ServoDS51150
+    pin: GPIO23
+    frequency: 50 Hz
+
+#Сервопривод MG945 для сливного клапана
+  - platform: ledc
+    id: ServoMG945
+    pin: GPIO21 #указать верный gpio
+    frequency: 50 Hz
+
+
+#Датчик температуры воды DS18B20
+dallas:
+  - pin: GPIO13
+    update_interval: 5s
+
+#####################################################################################
+########################### Глобальные переменные ###################################
+globals:
+  - id: idSavedPosition
+    type: int
+    initial_value: '0'
+    restore_value: true
+
+
+#####################################################################################
+################################ Конфигурация #######################################
+#Компонент сервопривод
+#Сервопривод DS51150-12V
+servo:
+  - id: idServoControlValve
+    output: ServoDS51150
+    auto_detach_time: 5s #Время бездействия, после которого сервопривод автоматически отсоединяется
+    transition_length: 5s #Время, которое требуется для плавного перемещения сервопривода между различными позициями
+    restore: true #Восстановление положения сервопривода после перезагрузки или сбоя питания
+    min_level: 2.5% #Минимальный уровень ШИМ-сигнала / min_level = 0.5 * 100 / 20 = 2.5%
+    idle_level: 7.5% #Уровень ШИМ-сигнала, который соответствует состоянию без движения или покоя сервопривода / idle_level = 1.5 * 100 / 20 = 7.5%
+    max_level: 12.5% #Максимальный уровень ШИМ-сигнала / max_level = 2.5 * 100 / 20 = 12.5%
+
+  - id: isServoControlSliv
+    output: ServoMG945
+    auto_detach_time: 5s #Время бездействия, после которого сервопривод автоматически отсоединяется
+    transition_length: 5s #Время, которое требуется для плавного перемещения сервопривода между различными позициями
+    restore: true #Восстановление положения сервопривода после перезагрузки или сбоя питания
+    min_level: 2.5% #Минимальный уровень ШИМ-сигнала / min_level = 0.5 * 100 / 20 = 2.5%
+    idle_level: 7.5% #Уровень ШИМ-сигнала, который соответствует состоянию без движения или покоя сервопривода / idle_level = 1.5 * 100 / 20 = 7.5%
+    max_level: 12.5% #Максимальный уровень ШИМ-сигнала / max_level = 2.5 * 100 / 20 = 12.5%
+
+
+
+#####################################################################################
+################################## Климат ###########################################
+#Указываем нужную температуру для 3-х ходового смесительного клапана  
+climate:
+  - platform: thermostat
+    visual:
+      min_temperature: 36
+      max_temperature: 42
+      temperature_step: 1
+    name: "Water temperature"
+    id: idClimateThermostat
+    icon: mdi:thermostat
+    sensor: dallas_temp_water
+    startup_delay: false
+    min_heating_off_time: 300s
+    min_heating_run_time: 300s
+    min_idle_time: 300s
+    heat_action:
+      - switch.turn_on: idVirtualSwitchWater
+    idle_action:
+      - switch.turn_off: idVirtualSwitchWater
+    default_preset: Comfort
+    preset:
+      - name: Comfort
+        default_target_temperature_low: 36 °C
+    on_state:
+      then:
+        - delay: 1s
+        - script.execute: script_climate_thermostat
+
+
+#####################################################################################
+################################## Сенсор ###########################################
+sensor:
+#Сенсор WiFi сигнала
+  - platform: wifi_signal
+    name: Gateway WiFi Signal
+    update_interval: 60s
+    unit_of_measurement: "dBa"
+    accuracy_decimals: 0
+
+#Сенсор позиции сервомотора
+  - platform: template
+    name: Servo Sensor Position
+    id: idServoSensor
+    icon: mdi:valve
+    on_value:
+      then:
+        - script.execute: script_servo
+        - script.execute: record_servo_position
+
+#Датчик температуры воды DS18B20
+  - platform: dallas
+    address: 0x46bb8af71e64ff28
+    name: Temperature Water
+    id: dallas_temp_water
+    icon: mdi:water-thermometer
+
+#Водосчетчик
+  - platform: pulse_counter
+    id: id_water_counter
+    pin:
+      number: GPIO19
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: Water Counter
+    icon: mdi:pulse
+    update_interval: 5s
+    unit_of_measurement: "Impulse/min"
+    internal_filter: 600ms #13us
+    use_pcnt: false
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.25 #(4 импульса на литр = 0.25. Пояснение = 1 литр делим на кол-во импульсов )
+    total:
+      name: Water Usage
+      unit_of_measurement: "L"
+      icon: mdi:water
+      id: water_meter_total
+      accuracy_decimals: 0
+      device_class: water
+      state_class: total_increasing
+      on_value:
+        then:
+          - if:
+              condition:
+               - lambda: 'return (id(water_meter_total).state) > 0 ;'
+              then:
+               - number.set:
+                  id: water_meter_number
+                  value: !lambda 'return id(water_meter_total).state;'
+
+
+#Датчик сопротивления для замера сопротивдения и определения баллона
+#Компонент Analog To Digital Sensor
+  - platform: adc
+    pin: GPIO39 #(A3)
+    id: source_sensor
+    name: ${board_name} ADS
+    update_interval: 500ms
+    accuracy_decimals: 3
+    attenuation: auto
+    filters:   
+      - multiply: 0.000805860 #3.3/4095, for attenuation 11db
+
+  - platform: resistance
+    id: resistance_sensor
+    sensor: source_sensor
+    configuration: DOWNSTREAM
+    resistor: 25kOhm
+    reference_voltage: 3.3v
+    name: ${board_name} Resistance
+    filters:
+      - calibrate_linear:
+          - 18.0 -> 0.0
+          - 8.5 -> 100.0
+      - lambda: |-
+          if (x < 0.0)
+            return 0;
+          if (x > 100.0)
+            return 100;
+          return x;
+    on_value:
+      - if:
+          condition:
+            - lambda: |-
+                return int(x) == 0;
+          then:
+            - switch.turn_off: idClose
+      - if:
+            condition:
+              - lambda: |-
+                  return int(x) == 100;
+            then:
+              - switch.turn_off: idOpen
+
+
+
+
+#####################################################################################
+################################ Бинарный сенсор ####################################
+binary_sensor:
+#Датчик уровня воды XKC-Y25-V. Уровень воды 1
+  - platform: gpio
+    pin: GPIO25
+    name: Water Level 1
+    device_class: moisture
+    icon: mdi:waves
+
+#Датчик уровня воды XKC-Y25-V. Уровень воды 2
+  - platform: gpio
+    pin: GPIO26
+    name: Water Level 2
+    device_class: moisture
+    icon: mdi:waves
+
+#Датчик допплера. Микроволновый датчик обнаружения человека MH-ET LIVE HB100 X 10,525 ГГц
+  - platform: gpio
+    pin: 
+      number: GPIO27
+      inverted: true
+    name: Person in the bath
+    device_class: occupancy
+    icon: mdi:motion-sensor
+
+#####################################################################################
+################################## Выключатель ######################################
+switch:
+#Выключатель сервопривода с начальной и конечной позицией
+  - platform: template
+    id: idServoControlValve_switch
+    name: Servo Start/End
+    icon: mdi:bathtub
+    turn_on_action:
+      - sensor.template.publish:
+          id: idServoSensor
+          state: !lambda 'return id(idServoStart).state;'
+      - switch.template.publish:
+         id: idServoControlValve_switch
+         state: true
+      - servo.write:
+         id: idServoControlValve
+         level: !lambda 'return (id(idServoStart).state/100);'
+    turn_off_action:
+      - sensor.template.publish:
+          id: idServoSensor
+          state: !lambda 'return id(idServoStop).state;'
+      - switch.template.publish:
+         id: idServoControlValve_switch
+         state: false
+      - servo.write:
+         id: idServoControlValve
+         level: !lambda 'return (id(idServoStop).state/100);'
+
+#Шаровой кран
+  - platform: gpio
+    pin: GPIO17
+    id: idClose
+    name: "close"
+    icon: mdi:arrow-left-bold
+    restore_mode: DISABLED
+    internal: True #Скрыть - true \показать - false
+
+  - platform: gpio
+    pin: GPIO16
+    id: idOpen
+    name: "open"
+    icon: mdi:arrow-right-bold
+    restore_mode: DISABLED
+    internal: True #Скрыть - true \показать - false
+
+
+#Виртуальный выключатель для термостата Thermostat Water temperature
+  - platform: template
+    id: idVirtualSwitchWater
+    name: Virtual switch water
+    icon: mdi:thermostat
+    restore_mode: DISABLED
+    internal: True #Скрыть - true \показать - false
+    turn_on_action:
+      - logger.log: "Switch Turned On"
+    turn_off_action:
+      - logger.log: "Switch Turned Off"
+
+
+
+
+
+#####################################################################################
+##################################### Шторы #########################################
+cover:
+  - platform: feedback
+    name: 'Valve threshold'
+    icon: mdi:water-pump
+    id: idCoverThreshold
+    open_action:
+      - switch.turn_off: idClose
+      - switch.turn_on: idOpen
+    close_action:
+      - switch.turn_off: idOpen
+      - switch.turn_on: idClose
+    stop_action:
+      - switch.turn_off: idOpen
+      - switch.turn_off: idClose
+    open_duration: 10s
+    close_duration: 10s
+    has_built_in_endstop: true
+
+
+#####################################################################################
+####################################### Скрипт ######################################
+script:
+#####################################################################
+#Начальное и конечное положение выставляется по указанным значениям, которые указываются в полях "idServoStart" и "idServoStop"
+  - id: script_servo
+    then:
+      - if:
+          condition:
+            - lambda: 'return id(idServoSensor).state == id(idServoStart).state;'
+          then:
+            - sensor.template.publish:
+               id: idServoSensor
+               state: !lambda 'return (id(idServoStart).state/100);'
+            - switch.turn_on: idServoControlValve_switch
+      - if:
+          condition:
+            and:
+              - lambda: 'return id(idServoSensor).state == id(idServoStop).state;'
+          then:
+            - sensor.template.publish:
+               id: idServoSensor
+               state: !lambda 'return id(idServoStop).state;'
+            - switch.turn_off: idServoControlValve_switch
+
+
+#####################################################################
+#Сохраняем положение сервопривода в глобальные переменные
+  - id: record_servo_position
+    then:
+      - globals.set:
+          id: idSavedPosition
+          value: !lambda 'return id(idServoSensor).state;'
+
+#####################################################################
+#Выставляем температуру на 3-х ходовом клапане с помощью сервопривода
+  - id: script_climate_thermostat
+    then:
+      - if:
+          condition:
+            lambda: 'return id(idClimateThermostat).target_temperature == 36;'
+          then:
+            - servo.write:
+                id: idServoControlValve
+                level: 100%
+            - sensor.template.publish:
+                id: idServoSensor
+                state: !lambda 'return 100;'
+      - if:
+          condition:
+            lambda: 'return id(idClimateThermostat).target_temperature == 37;'
+          then:
+            - servo.write:
+                id: idServoControlValve
+                level: 90%
+            - sensor.template.publish:
+                id: idServoSensor
+                state: !lambda 'return 90;'
+      - if:
+          condition:
+            lambda: 'return id(idClimateThermostat).target_temperature == 38;'
+          then:
+            - servo.write:
+                id: idServoControlValve
+                level: 80%
+            - sensor.template.publish:
+                id: idServoSensor
+                state: !lambda 'return 80;'
+      - if:
+          condition:
+            lambda: 'return id(idClimateThermostat).target_temperature== 39;'
+          then:
+            - servo.write:
+                id: idServoControlValve
+                level: 70%
+            - sensor.template.publish:
+                id: idServoSensor
+                state: !lambda 'return 70;'
+      - if:
+          condition:
+            lambda: 'return id(idClimateThermostat).target_temperature == 40;'
+          then:
+            - servo.write:
+                id: idServoControlValve
+                level: 60%
+            - sensor.template.publish:
+                id: idServoSensor
+                state: !lambda 'return 60;'
+      - if:
+          condition:
+            lambda: 'return id(idClimateThermostat).target_temperature == 41;'
+          then:
+            - servo.write:
+                id: idServoControlValve
+                level: 50%
+            - sensor.template.publish:
+                id: idServoSensor
+                state: !lambda 'return 50;'
+      - if:
+          condition:
+            lambda: 'return id(idClimateThermostat).target_temperature == 42;'
+          then:
+            - servo.write:
+                id: idServoControlValve
+                level: 40%
+            - sensor.template.publish:
+                id: idServoSensor
+                state: !lambda 'return 40;'
+
+
+
+#####################################################################################
+####################################### Число #######################################
+#Ползунок для управления сервоприводом
+number:
+  - platform: template
+    name: Servo Position
+    min_value: -100
+    max_value: 100
+    update_interval: 1s 
+    mode: slider #slider/box
+    lambda: 'return id(idServoSensor).state;' 
+    step: 1
+    set_action:
+      then:
+        - servo.write:
+           id: idServoControlValve
+           level: !lambda 'return x / 100.0;'
+        - sensor.template.publish:
+           id: idServoSensor
+           state: !lambda 'return x;'
+
+#Указываем начальную позицию сервопривода  
+  - platform: template
+    name: Servo Start Position
+    id: idServoStart
+    min_value: -100
+    max_value: 100
+    mode: box #slider/box
+    step: 1
+    optimistic: true
+    restore_value: true
+
+#Указываем конечную позицию сервопривода  
+  - platform: template
+    name: Servo End Position
+    id: idServoStop
+    min_value: -100
+    max_value: 100
+    mode: box #slider/box
+    step: 1
+    optimistic: true
+    restore_value: true
+
+  - platform: template
+    name: Water Meter Number
+    id: water_meter_number
+    min_value: 0
+    max_value: 999999999
+    mode: box #slider/box
+    step: 1
+    optimistic: true
+    restore_value: true
+    icon: mdi:water
+
+
+
+
+#####################################################################################
+####################################### Кнопка ######################################
+button:
+#Перезагрузка
+  - platform: restart
+    name: ${board_name} Restart
+    icon: mdi:restart
+
+#Сбросить счетчик учета воды
+  - platform: template
+    name: '${board_name} Reset Water Counter'
+    icon: mdi:restart
+    on_press:
+      then:
+        - pulse_counter.set_total_pulses:
+            id: id_water_counter
+            value: !lambda 'return 0;'
+
+
+#####################################################################################
+################################### Текстовый сенсор ################################
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: ${board_name} IP
+
+
+#####################################################################################
+####################################### Время #######################################
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: Europe/Moscow
